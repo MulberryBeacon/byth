@@ -33,7 +33,7 @@ class MyListener(stomp.ConnectionListener):
         """
         self.buffer = messages
 
-    def on_message(self, headers, message):
+    def on_message(self, message):
         self.buffer.append(message)
 
 
