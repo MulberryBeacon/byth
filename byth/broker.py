@@ -1,16 +1,11 @@
 # -*- coding: utf-8 -*-
 """
 API to interact with a message broker.
-
-WARNING
-=======
-This file is classified and access to it requires top-level privileges. If you're currently looking
-at the code without the proper clearance, please kill yourself now.
 """
 
 # Module import
 # -------------------------------------------------------------------------------------------------
-from urlparse import urlparse
+import urllib.parse as parse
 import logging
 import time
 import stomp
@@ -33,8 +28,17 @@ class MyListener(stomp.ConnectionListener):
         """
         self.buffer = messages
 
-    def on_message(self, message):
-        self.buffer.append(message)
+    def on_message(self, headers, body):
+        """
+        Called by the STOMP connection when a MESSAGE frame is received.
+        This method overrides the implementation provided for the stomp.ConnectionListener object.
+
+        :param dict headers:
+            a dictionary containing all headers sent by the server as key/value pairs.
+        :param body:
+            the frame's payload - the message body.
+        """
+        self.buffer.append(body)
 
 
 class Broker(object):
@@ -43,19 +47,20 @@ class Broker(object):
     """
     def __init__(self, broker_uri, queue):
         """
-        :param host_and_port:
-            The tuple with the hostname and port of the message broker
+        :param broker_uri:
+            The address of the message broker
         :param queue:
-            The message queue
-        :param connection:
-            The connection to the message broker
-        :param message_buffer:
-            The stack with messages retrieved from the queue
+            The name of the message queue
         """
-        self.host_and_port = self.__parse_uri(broker_uri)
+        # The tuple with the hostname and port of the message broker
+        self.host_and_port = self._parse_uri(broker_uri)
         self.queue = queue
+
+        # The stomp.Connection12 instance with the connection to the message broker
         self.connection = None
-        # This internal buffer is managed as a stack, which means that it works as FIFO.
+
+        # The internal buffer with messages retrieved from the queue. It's managed as a stack,
+        # which means that it works as FIFO.
         self.message_buffer = []
 
 
@@ -74,7 +79,7 @@ class Broker(object):
             self.connection.start()
             self.connection.connect(wait=True)
         except stomp.exception.StompException as ex:
-            LOGGER.error(ex.message)
+            LOGGER.error(ex)
             quit(1)
 
 
@@ -90,11 +95,9 @@ class Broker(object):
         try:
             self.connection.set_listener('MyListener', MyListener(self.message_buffer))
             self.connection.subscribe(destination=self.queue, id=1, ack='auto')
-            #self.connection.subscribe(destination=self.queue, id=1, ack='client')
-            #self.connection.subscribe(destination=self.queue, id=1, ack='client-individual')
             time.sleep(2)
         except stomp.exception.StompException as ex:
-            LOGGER.error(ex.message)
+            LOGGER.error(ex)
             quit(1)
 
 
@@ -114,7 +117,7 @@ class Broker(object):
             time.sleep(2)
             self.connection.send(self.queue, message)
         except stomp.exception.StompException as ex:
-            LOGGER.error(ex.message)
+            LOGGER.error(ex)
             quit(1)
 
 
@@ -131,7 +134,7 @@ class Broker(object):
             time.sleep(2)
             self.connection.disconnect()
         except stomp.exception.StompException as ex:
-            LOGGER.error(ex.message)
+            LOGGER.error(ex)
             quit(1)
 
 
@@ -161,7 +164,7 @@ class Broker(object):
         return [self.message_buffer.pop(0) for index in range(number) if self.message_buffer]
 
 
-    def __parse_uri(self, broker_uri):
+    def _parse_uri(self, broker_uri):
         """
         Parses a message broker URI to retrieve the hostname and the port.
 
@@ -174,13 +177,13 @@ class Broker(object):
         :return:
             A tuple with the hostname and the port
         """
-        elements = urlparse(broker_uri)
+        elements = parse.urlparse(broker_uri)
         return (elements.hostname, elements.port)
 
 
 def fancy_send(broker, message):
     """
-    Sends a message to the message broker.
+    Fancy wrapper that combines several operations to send a message to the message broker.
 
     :param broker:
         The Broker instance
@@ -192,17 +195,18 @@ def fancy_send(broker, message):
     broker.disconnect()
 
 
-def fancy_receive(broker, num_messages=1):
+def fancy_retrieve(broker, num_messages=1):
     """
+    Fancy wrapper that combines several operations to retrieve a message from the message broker.
 
     :param broker:
         The Broker instance
     :param num_messages:
         The number of messages to retrieve from the queue
     :rtype:
-        ???
+        list
     :return:
-        ???
+        The list of messages kept in the internal message buffer
     """
     broker.connect()
     broker.subscribe()
