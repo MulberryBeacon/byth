@@ -95,7 +95,7 @@ on_message {'content-length': '18', 'expires': '0', 'destination': '/queue/byth_
 
 ## Code metrics
 
-### CLOC
+* CLOC
 
 ```sh
 http://cloc.sourceforge.net v 1.60  T=0.23 s (8.7 files/s, 1026.6 lines/s)
@@ -117,7 +117,7 @@ SUM:                             2             40            120             77
 -------------------------------------------------------------------------------
 ```
 
-### SLOCCount
+* SLOCCount
 
 ```sh
 SLOC    Directory       SLOC-by-Language (Sorted)
