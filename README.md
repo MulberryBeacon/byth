@@ -8,11 +8,33 @@ in the back end layer of a personal project.
 
 ## Instructions
 
-Coming soon.
+* Clone the repository
+
+```sh
+# git clone git@github.com:MulberryBeacon/byth.git
+Cloning into 'byth'...
+remote: Counting objects: 23, done.
+remote: Compressing objects: 100% (18/18), done.
+remote: Total 23 (delta 6), reused 17 (delta 4), pack-reused 0
+Receiving objects: 100% (23/23), 6.78 KiB | 0 bytes/s, done.
+Resolving deltas: 100% (6/6), done.
+Checking connectivity... done.
+```
+
+* Install with `pip`
+
+```sh
+# pip install .
+Processing /path/to/byth
+Collecting stomp.py>=4.1.18 (from byth==0.0.1)
+Installing collected packages: stomp.py, byth
+  Running setup.py install for byth ... done
+Successfully installed byth-0.0.1 stomp.py-4.1.18
+```
 
 ## Examples
 
-### Send a message
+* Send a message
 
 ```python
 >>> import byth.broker
@@ -43,7 +65,7 @@ on_disconnected
 INFO:stomp.py:Receiver loop ended
 ```
 
-### Retrieve a message
+* Retrieve a message
 
 ```python
 >>> import byth.broker
@@ -71,13 +93,56 @@ on_message {'content-length': '18', 'expires': '0', 'destination': '/queue/byth_
 >>> broker.disconnect()
 ```
 
-## Dependencies
-
-Coming soon.
-
 ## Code metrics
 
-Coming soon.
+### CLOC
+
+```sh
+http://cloc.sourceforge.net v 1.60  T=0.23 s (8.7 files/s, 1026.6 lines/s)
+-------------------------------------------------------------------------------
+File                             blank        comment           code
+-------------------------------------------------------------------------------
+./byth/broker.py                    38            112             65
+./setup.py                           2              8             12
+-------------------------------------------------------------------------------
+SUM:                                40            120             77
+-------------------------------------------------------------------------------
+
+-------------------------------------------------------------------------------
+Language                     files          blank        comment           code
+-------------------------------------------------------------------------------
+Python                           2             40            120             77
+-------------------------------------------------------------------------------
+SUM:                             2             40            120             77
+-------------------------------------------------------------------------------
+```
+
+### SLOCCount
+
+```sh
+SLOC    Directory       SLOC-by-Language (Sorted)
+65      byth            python=65
+12      top_dir         python=12
+0       byth.egg-info   (none)
+
+Totals grouped by language (dominant language first):
+python:          77 (100.00%)
+
+Total Physical Source Lines of Code (SLOC)                = 77
+Development Effort Estimate, Person-Years (Person-Months) = 0.01 (0.16)
+ (Basic COCOMO model, Person-Months = 2.4 * (KSLOC**1.05))
+Schedule Estimate, Years (Months)                         = 0.10 (1.25)
+ (Basic COCOMO model, Months = 2.5 * (person-months**0.38))
+Estimated Average Number of Developers (Effort/Schedule)  = 0.13
+Total Estimated Cost to Develop                           = $ 1,830
+ (average salary = $56,286/year, overhead = 2.40).
+SLOCCount, Copyright (C) 2001-2004 David A. Wheeler
+SLOCCount is Open Source Software/Free Software, licensed under the GNU GPL.
+SLOCCount comes with ABSOLUTELY NO WARRANTY, and you are welcome to
+redistribute it under certain conditions as specified by the GNU GPL license;
+see the documentation for details.
+Please credit this data as "generated using David A. Wheeler's 'SLOCCount'."
+```
 
 ## License
 
