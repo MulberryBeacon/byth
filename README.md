@@ -10,7 +10,7 @@ in the back end layer of a personal project.
 
 * Clone the repository
 
-```sh
+```
 # git clone git@github.com:MulberryBeacon/byth.git
 Cloning into 'byth'...
 remote: Counting objects: 23, done.
@@ -23,7 +23,7 @@ Checking connectivity... done.
 
 * Install with `pip`
 
-```sh
+```
 # pip install .
 Processing /path/to/byth
 Collecting stomp.py>=4.1.18 (from byth==0.0.1)
@@ -36,7 +36,7 @@ Successfully installed byth-0.0.1 stomp.py-4.1.18
 
 * Send a message
 
-```python
+```
 >>> import byth.broker
 >>> import json
 >>>
@@ -67,7 +67,7 @@ INFO:stomp.py:Receiver loop ended
 
 * Retrieve a message
 
-```python
+```
 >>> import byth.broker
 >>>
 >>> broker = byth.broker.Broker('stomp://127.0.0.1:61613', 'byth_queue')
@@ -97,7 +97,7 @@ on_message {'content-length': '18', 'expires': '0', 'destination': '/queue/byth_
 
 * CLOC
 
-```sh
+```
 http://cloc.sourceforge.net v 1.60  T=0.23 s (8.7 files/s, 1026.6 lines/s)
 -------------------------------------------------------------------------------
 File                             blank        comment           code
@@ -119,7 +119,7 @@ SUM:                             2             40            120             77
 
 * SLOCCount
 
-```sh
+```
 SLOC    Directory       SLOC-by-Language (Sorted)
 65      byth            python=65
 12      top_dir         python=12
