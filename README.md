@@ -1,7 +1,7 @@
 # Byth
 
-Small message broker that uses the [stomp.py][stomp] library to interact with
-[ActiveMQ][activemq].
+Small message broker in Python 3 that uses the [stomp.py][stomp] library to
+interact with [ActiveMQ][activemq].
 
 I created this prototype to quickly assess the potential integration of ActiveMQ
 in the back end layer of a personal project.
