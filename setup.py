@@ -17,6 +17,6 @@ setup(
     author_email='mulberry.beacon@gmail.com',
     packages=find_packages(),
     install_requires=[
-        'stomp.py>=4.1.18'
+        'stomp.py>=4.1.19'
     ]
 )
