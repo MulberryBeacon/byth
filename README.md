@@ -11,7 +11,7 @@ in the back end layer of a personal project.
 * Clone the repository
 
 ```
-# git clone git@github.com:MulberryBeacon/byth.git
+$ git clone git@github.com:MulberryBeacon/byth.git
 Cloning into 'byth'...
 remote: Counting objects: 23, done.
 remote: Compressing objects: 100% (18/18), done.
@@ -24,7 +24,7 @@ Checking connectivity... done.
 * Install with `pip`
 
 ```
-# pip install .
+$ pip install .
 Processing /path/to/byth
 Collecting stomp.py>=4.1.18 (from byth==0.0.1)
 Installing collected packages: stomp.py, byth
