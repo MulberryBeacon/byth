@@ -117,33 +117,6 @@ SUM:                             2             40            120             77
 -------------------------------------------------------------------------------
 ```
 
-* SLOCCount
-
-```
-SLOC    Directory       SLOC-by-Language (Sorted)
-65      byth            python=65
-12      top_dir         python=12
-0       byth.egg-info   (none)
-
-Totals grouped by language (dominant language first):
-python:          77 (100.00%)
-
-Total Physical Source Lines of Code (SLOC)                = 77
-Development Effort Estimate, Person-Years (Person-Months) = 0.01 (0.16)
- (Basic COCOMO model, Person-Months = 2.4 * (KSLOC**1.05))
-Schedule Estimate, Years (Months)                         = 0.10 (1.25)
- (Basic COCOMO model, Months = 2.5 * (person-months**0.38))
-Estimated Average Number of Developers (Effort/Schedule)  = 0.13
-Total Estimated Cost to Develop                           = $ 1,830
- (average salary = $56,286/year, overhead = 2.40).
-SLOCCount, Copyright (C) 2001-2004 David A. Wheeler
-SLOCCount is Open Source Software/Free Software, licensed under the GNU GPL.
-SLOCCount comes with ABSOLUTELY NO WARRANTY, and you are welcome to
-redistribute it under certain conditions as specified by the GNU GPL license;
-see the documentation for details.
-Please credit this data as "generated using David A. Wheeler's 'SLOCCount'."
-```
-
 ## License
 
 Copyright (c) 2017 Eduardo Ferreira
